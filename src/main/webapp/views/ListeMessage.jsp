@@ -5,22 +5,35 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<link rel="stylesheet" href="css/style.css">
 <title>Liste des messages</title>
 </head>
 <body>
 	<table>
-		<c:forEach items="${messages }" var="messages">
-			<tr>Date: ${ messages.getDate()}</tr><br>
-			<tr>Titre: ${ messages.getTitre()}  </tr>	<br>
-			<tr>Contenus: ${ messages.getContenu()} </tr><br>	
+		<thead>
 			<tr>
-			<form action="voirMessage" method="post">
-				<button name="id" value="${ messages.getId()}">Voir le message</button>
-			</form>
-			</tr><br><br>		
+				<th>Date</th>
+				<th>Titre</th>
+				<th>Contenus</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
 		
+		<c:forEach items="${messages }" var="messages">
+		<tbody>		
+			<td>${ messages.getDate()}</td>
+			<td>${ messages.getTitre()} </td>
+			<td>${ messages.getContenu()} </td>	
 			
+			<td>
+				<form action="voirMessage" method="post">
+					<button name="id" value="${ messages.getId()}">Voir le message</button>
+				</form>
+			</td>				
+		</tbody>	
 		</c:forEach>
-	</table>
+		
+	</table><br>
+	<a href="ajoutMessage" name><button>Ajouter un message</button></a>
 </body>
 </html>

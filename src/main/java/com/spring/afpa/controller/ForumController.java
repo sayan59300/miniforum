@@ -12,6 +12,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Date;
 
+import javax.servlet.http.HttpServletRequest;
+
 import com.spring.afpa.dao.MessageRepository;
 import com.spring.afpa.model.Message;
 
@@ -33,7 +35,7 @@ public class ForumController {
     
     //Methode qui permet de valider l'ajout de message
     @PostMapping(value = "/ajoutMessage")
-    public ModelAndView AjoutProduit(@RequestParam(value = "titre") String titre, @RequestParam(value = "contenu") String contenu) {
+    public String AjoutMessage(HttpServletRequest request, @RequestParam(value = "titre") String titre, @RequestParam(value = "contenu") String contenu) {
         
     	Date maintenant = new Date();   
     	String date = "";
@@ -44,56 +46,47 @@ public class ForumController {
     	 messageRepository.save(message);
         
     	 ArrayList <Message> messages =(ArrayList<Message>) messageRepository.findAll();    	 
-    	 
-        ModelAndView mv = new ModelAndView();
-        mv.addObject("messages", messages);
-        mv.setViewName("ListeMessage");       
-        
-        return mv;
+    	            
+                  
+        request.setAttribute("messages", messages);
+        return "ListeMessage";
     }
     
     //Methode qui permet d'aller sur la page des differents message
     @GetMapping(value = "/listeMessage")
-    public ModelAndView ListeMessage() {
+    public String ListeMessage(HttpServletRequest request) {
     	ArrayList <Message> messages =(ArrayList<Message>) messageRepository.findAll();
-    	
-    	ModelAndView mv = new ModelAndView();
-    	mv.addObject("messages", messages);
-        mv.setViewName("ListeMessage");
-        return mv;
+    	    	    	
+        request.setAttribute("messages", messages);
+        return "ListeMessage";
 
     }
     
     //Methode qui permet de voir un message
     @PostMapping(value = "/voirMessage")
-    public ModelAndView AjoutProduit(@RequestParam(value = "id") Long id) {
+    public String AjoutProduit(HttpServletRequest request,@RequestParam(value = "id") Long id) {
             	  	 
-    	Message message = messageRepository.getById(id);
-    	
-        ModelAndView mv = new ModelAndView();
-        mv.addObject("message", message);
-        mv.setViewName("VoirMessage");       
+    	Message message = messageRepository.getById(id);    	
         
-        return mv;
+        request.setAttribute("message", message);           
+        
+        return "VoirMessage";
     }
     
     //Methode qui permet d'aller sur la page de modification de message  
     @GetMapping(value = "/modifierMessage")
-    public ModelAndView ModifierMessage(@RequestParam(value = "id") Long id) {
+    public String ModifierMessage(HttpServletRequest request, @RequestParam(value = "id") Long id) {
             	  	 
     	
     	Message message = messageRepository.getById(id);    	
-    	
-    	    	
-        ModelAndView mv = new ModelAndView();
-        mv.addObject("message", message);
-        mv.setViewName("ModifierMessage");        
-        return mv;
+    	request.setAttribute("message", message);  
+    	     
+        return "ModifierMessage";
     }
     
     //Methode qui permet de modifier le message
     @PostMapping(value = "/modifierMessage")
-    public ModelAndView ModifierMessage(@RequestParam(value = "id") Long id,@RequestParam(value = "titre") String titre, @RequestParam(value = "contenu") String contenu) {
+    public String ModifierMessage(HttpServletRequest request,@RequestParam(value = "id") Long id,@RequestParam(value = "titre") String titre, @RequestParam(value = "contenu") String contenu) {
             	  	 
     	Message message = messageRepository.getById(id);
     	Date maintenant = new Date();   
@@ -107,23 +100,21 @@ public class ForumController {
     	messageRepository.save(message);
     	
     	ArrayList <Message> messages =(ArrayList<Message>) messageRepository.findAll();
-        ModelAndView mv = new ModelAndView();
-        mv.addObject("messages", messages);
-        mv.setViewName("ListeMessage");        
-        return mv;
+    	request.setAttribute("messages", messages);
+              
+        return "ListeMessage";
     }
    
     //Methode qui permet de supprimer le message
     @PostMapping(value = "/supprimerMessage")
-    public ModelAndView SupprimerMessage(@RequestParam(value = "id") Long id) {
+    public String SupprimerMessage(HttpServletRequest request,@RequestParam(value = "id") Long id) {
             	  	 
     	Message message = messageRepository.getById(id);    	
     	messageRepository.delete(message);
     	
     	ArrayList <Message> messages =(ArrayList<Message>) messageRepository.findAll();
-        ModelAndView mv = new ModelAndView();
-        mv.addObject("messages", messages);
-        mv.setViewName("ListeMessage");        
-        return mv;
+          
+        request.setAttribute("messages", messages);
+        return "ListeMessage";
     }
 }
