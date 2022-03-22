@@ -1,4 +1,4 @@
-package com.spring.afpa.controller;
+package com.miniforum.controller;
 
 import java.text.DateFormat;
 import java.util.ArrayList;
@@ -12,10 +12,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Date;
 
-import com.spring.afpa.dao.MessageRepository;
-import com.spring.afpa.model.Message;
-
-import org.springframework.web.bind.annotation.RequestMapping;
+import com.miniforum.dao.MessageRepository;
+import com.miniforum.model.Message;
 
 @Controller
 public class ForumController {

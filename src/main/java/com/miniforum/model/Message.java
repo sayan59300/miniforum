@@ -1,4 +1,4 @@
-package com.spring.afpa.model;
+package com.miniforum.model;
 
 import java.util.Date;
 
