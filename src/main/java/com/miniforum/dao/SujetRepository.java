@@ -1,8 +1,8 @@
-package com.spring.afpa.dao;
+package com.miniforum.dao;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.spring.afpa.model.Sujet;
+import com.miniforum.model.Sujet;
 
 public interface SujetRepository extends JpaRepository<Sujet, Integer> {
 	

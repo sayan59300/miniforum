@@ -1,8 +1,8 @@
-package com.spring.afpa.dao;
+package com.miniforum.dao;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.spring.afpa.model.Inscription;
+import com.miniforum.model.Inscription;
 
 public interface InscriptionRepository extends JpaRepository<Inscription, Integer>{
 
