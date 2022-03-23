@@ -21,8 +21,9 @@ public class ForumController {
 
     //Methode pour aller sur la page d'ajout de message
     @GetMapping(value = "/ajoutmessage")
-    public String ajoutMessage() {
+    public String ajoutMessage(Model model) {
 
+        model.addAttribute("messageForm", new Message());
         return "ajoutMessage";
 
     }
