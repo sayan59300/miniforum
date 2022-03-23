@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="index :: headfiles">
+</head>
+<body>
+<header th:insert="index :: headerfiles"></header>
+<h1>Liste des messages</h1>
+<table>
+    <tr>
+        <th>Date</th>
+        <th>Titre</th>
+        <th>Contenus</th>
+        <th>Actions</th>
+    </tr>
+    <tr th:each="message, state : ${messages}">
+        <td th:utext="${message.date}"></td>
+        <td th:utext="${message.titre}"></td>
+        <td th:utext="${message.contenu}"></td>
+        <td>
+            <form action="/voirmessage" method="post">
+                <input th:value="${message.id}" type="hidden">
+                <button name="id" value="afficher">Voir le message</button>
+            </form>
+        </td>
+    </tr>
+</table>
+<footer th:insert="index :: footer"></footer>
+</body>
+</html>
