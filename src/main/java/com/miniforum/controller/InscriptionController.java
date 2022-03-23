@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import com.miniforum.dao;
@@ -25,8 +26,8 @@ public class InscriptionController {
 //	Affichage de la page d'inscription.
 	
 	@GetMapping(value = "/inscription" )
-	public String showRegister() {
-		
+	public String showRegister(Model model) {
+		model.addAttribute("utilisateurForm", new Utilisateur())
 		return "inscription";
 		
 	}
@@ -34,26 +35,15 @@ public class InscriptionController {
 // Gestion de l'inscription d'un utilisateur.
 	
 	@PostMapping(value="/inscription")
-	public String register(
-			@RequestParam(value = "nom") String nom, 
-    		@RequestParam(value = "prenom") String prenom,
-    		@RequestParam(value = "age") String age,
-    		@RequestParam(value = "job") String job,
-    		@RequestParam(value = "hobbys") String hobbys,
-    		@RequestParam(value = "pseudo") String pseudo,
-    		@RequestParam(value = "email") String email,
-    		@RequestParam(value = "password") String mdp,
-    		@RequestParam(value = "password2") String mdp2,
-    		Model model
-    ) {
+	public String register(@ModelAttribute("utilisateurForm") Utilisateur utilisateur, Model model) {
 		
 		System.out.println("===DEBUG=== Entrée dans la route POST de la page d'inscription ===DEBUG===");
 		
 		//	Retourne un message d'erreur si un des champs requis n'est pas complété.
 		
-		if(nom.length() == 0 || prenom.length() == 0 || age.length() == 0 || 
-				job.length() == 0 || hobbys.length() == 0 || pseudo.length() == 0 ||
-				email.length() == 0 || mdp.length() == 0 || mdp2.length() == 0) {
+		if(utilisateur.getNom().length() == 0 || utilisateur.getPrenom().length() == 0 || utilisateur.getAge().length() == 0 || 
+				utilisateur.getJob().length() == 0 || utilisateur.getHobbys().length() == 0 || utilisateur.getPseudo().length() == 0 ||
+				utilisateur.getEmail().length() == 0 || utilisateur.getPassword().length() == 0 || utilisateur.getPassword2().length() == 0) {
 			
 			System.out.println("===DEBUG=== Entrée dans condition 1 ===DEBUG===");
 			
@@ -65,7 +55,7 @@ public class InscriptionController {
 		
 		// Verification que le pseudo ne dépasse pas 15 caractères.
 		
-		if(pseudo.length() > 15) {
+		if(utilisateur.getPseudo().length() > 15) {
 			
 			System.out.println("===DEBUG=== Entrée dans condition 2 ===DEBUG===");
 			
@@ -73,12 +63,11 @@ public class InscriptionController {
 			model.addAttribute("message", errormessage);
 			return "inscription";
 			
-			
 		}
 		
 		// Vérification que les deux mot de passes fournis par l'utilisateur correspondent entre eux.
 		
-		if(!mdp.equals(mdp2)) {
+		if(!utilisateur.getPassword().equals(utilisateur.getPassword2())) {
 			
 			System.out.println("===DEBUG=== Entrée dans condition 3 ===DEBUG===");
 			
@@ -86,20 +75,9 @@ public class InscriptionController {
 			model.addAttribute("message", errormessage);
 			return "inscription";
 			
-			
 		}
 		
 		// Si tout les champs sont ok alors création de l'utilisateur et insertion en base de données.
-		
-		Utilisateur utilisateur = new Utilisateur();
-		
-		utilisateur.setNom(nom);
-		utilisateur.setPrenom(prenom);
-		utilisateur.setAge(age);
-		utilisateur.setJob(job);
-		utilisateur.setHobby(hobbys);
-		utilisateur.setPseudo(pseudo);
-		utilisateur.setPassword(mdp);
 		
 		utilisateurRepository.save(utilisateur);
 		
