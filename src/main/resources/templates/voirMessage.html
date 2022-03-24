@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="index :: headfiles">
+</head>
+<body>
+<header th:insert="index :: headerfiles"></header>
+<h1>Contenu du message</h1>
+<p th:text="${message.date}"></p>
+<p th:text="${message.titre}"></p>
+<p th:text="${message.contenu}"></p>
+<form action="/modifiermessage" method="get">
+    <input name="id" th:value="${message.id}" type="hidden">
+    <input type="submit" value="Modifier le message"/>
+</form>
+<br><br>
+<form action="/supprimermessage" method="post">
+    <input name="id" th:value="${message.id}" type="hidden">
+    <input onclick="return confirm('Etes vous sur de vouloir supprimer ?');" type="submit"
+           value="Supprimer le message"/>
+</form>
+<footer th:insert="index :: footer"></footer>
+</body>
+</html>

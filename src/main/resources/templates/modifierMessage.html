@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="index :: headfiles">
+</head>
+<body>
+<header th:insert="index :: headerfiles"></header>
+<h1>Modifier message</h1>
+<form action="/modifiermessage" method="post">
+    <label for="titre">
+        Titre du message :
+    </label>
+    <input id="titre" name="titre" th:value="${messageForm.titre}" type="text"/>
+
+    <label for="contenu">
+        Contenu du message :
+    </label>
+    <textarea id="contenu" name="contenu" th:value="${messageForm.titre}"></textarea>
+    <input name="envoyer" type="submit" value="Envoyer"/>
+</form>
+
+<footer th:insert="index :: footer"></footer>
+</body>
+</html>

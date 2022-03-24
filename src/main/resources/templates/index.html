@@ -3,29 +3,27 @@
 
 <!--thymeleaf head fragment-->
 <head th:fragment="headfiles">
-
     <!--meta tags-->
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="description" content="Le forum des développeurs lazy qui se passionne de loin ou de prêt s'ils ont des
-    lunettes aux crypto monnaies">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta property="og:title" content="CryptoDev">
-    <meta property="og:type" content="Le forum des développeurs lazy qui se passionne de loin ou de prêt s'ils ont des
-    lunettes aux crypto monnaies">
-    <meta property="og:url" content="https://cryptodev.afpa">
-    <meta property="og:image" content="">
+    <meta charset="UTF-8"/>
+    <meta content="ie=edge" http-equiv="X-UA-Compatible"/>
+    <meta content="Le forum des développeurs lazy qui se passionne de loin ou de prêt s'ils ont des
+    lunettes aux crypto monnaies" name="description"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <meta content="CryptoDev" property="og:title"/>
+    <meta content="Le forum des développeurs lazy qui se passionne de loin ou de prêt s'ils ont des
+    lunettes aux crypto monnaies" property="og:type"/>
+    <meta content="https://cryptodev.afpa" property="og:url"/>
+    <meta content="" property="og:image"/>
 
     <!--import stylesheet section-->
-    <link rel="stylesheet" href="../static/css/style.css">
-    <link rel="stylesheet" href="../static/css/navbar.css">
-    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+    <link href="../static/css/style.css" rel="stylesheet"/>
+    <link href="../static/css/navbar.css" rel="stylesheet"/>
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet"/>
 
 
     <!--import script section-->
-
-    <script src="../static/scripts/bootstrap.min.js"></script>
-    <script src="../static/scripts/jquery.min.js"></script>
+    <script defer src="../static/scripts/bootstrap.min.js"></script>
+    <script defer src="../static/scripts/jquery.min.js"></script>
 
     <title>CryptoDev</title>
 </head>
@@ -43,16 +41,16 @@
     ga('set', 'transport', 'beacon');
     ga('send', 'pageview')
 </script>
-<script src="https://www.google-analytics.com/analytics.js" async></script>
+<script async src="https://www.google-analytics.com/analytics.js"></script>
 
 <!--header definition-->
 <!--thymeleaf header fragment-->
 <header th:fragment="headerfiles">
     <nav class="navbar navbar-icon-top navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="#"></a>
-        <img class="logo" src="../static/img/wt_logo_focus.png" alt="logo">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <img alt="logo" class="logo" src="../static/img/wt_logo_focus.png"/>
+        <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"
+                data-target="#navbarSupportedContent" data-toggle="collapse" type="button">
             <span class="navbar-toggler-icon"></span>
         </button>
 
