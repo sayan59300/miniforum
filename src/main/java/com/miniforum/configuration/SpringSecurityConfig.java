@@ -24,26 +24,27 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     UserDetailsServiceImpl userDetailsServiceImpl;
 
+    /**
+     * Indique ce que doit utiliser Spring pour récupérer les utilisateurs
+     *
+     * @param auth
+     * @throws Exception
+     */
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-
-
         DaoAuthenticationProvider daoAuthProvider = new DaoAuthenticationProvider();
         daoAuthProvider.setPasswordEncoder(passwordEncoder());
         daoAuthProvider.setUserDetailsService(userDetailsServiceImpl);
-
         auth.authenticationProvider(daoAuthProvider);
-
-        /*
-         * auth.inMemoryAuthentication()
-         * .withUser("springuser").password(passwordEncoder().encode("spring123")).roles
-         * ("USER") .and()
-         * .withUser("springadmin").password(passwordEncoder().encode("admin123")).roles
-         * ("ADMIN", "USER");
-         */
 
     }
 
+    /**
+     * Configuration de spring Sécurity
+     *
+     * @param http
+     * @throws Exception
+     */
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http
@@ -60,6 +61,11 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutSuccessUrl("/login");
     }
 
+    /**
+     * Spécifie l'encodeur utilisé pour le hash du password
+     *
+     * @return
+     */
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();

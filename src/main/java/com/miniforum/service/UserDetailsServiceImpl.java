@@ -16,10 +16,17 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Autowired
     private UtilisateurRepository utilisateurRepository;
 
+    /**
+     * Fournit des informations utilisateur de base
+     * Spécifie la colonne des roles
+     *
+     * @param pseudo
+     * @return
+     * @throws UsernameNotFoundException
+     */
     @Override
     public UserDetails loadUserByUsername(String pseudo) throws UsernameNotFoundException {
         Utilisateur utilisateur = utilisateurRepository.findByPseudo(pseudo);
-
         UserDetails userDetails = new User(pseudo, utilisateur.getPassword(), AuthorityUtils.createAuthorityList(utilisateur.getType_utilisateur()));
         return userDetails;
     }

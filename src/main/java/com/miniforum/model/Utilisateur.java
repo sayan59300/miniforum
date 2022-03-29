@@ -1,141 +1,136 @@
 package com.miniforum.model;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-
 
 @Entity
-public class Utilisateur{
-	
-	@Id
-	@GeneratedValue (strategy=GenerationType.IDENTITY)
-	private int id;
-	private String nom;	
-	private String prenom;
-	private int age;
-	private String profession;
-	private String hobby;
-	private String pseudo;
-	private String password;
-	private String type_utilisateur;
-	
-	@OneToOne
-	private Inscription inscription;
-	
-	@OneToMany
-	private List <Message> message = new ArrayList<Message>();
+public class Utilisateur {
 
-	public Utilisateur() {
-	}
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+    private String nom;
+    private String prenom;
+    private int age;
+    private String profession;
+    private String hobby;
+    private String pseudo;
+    private String password;
+    private String type_utilisateur;
 
-	public Utilisateur(int id, String nom, String prenom, int age, String profession, String hobby, String pseudo,
-			String password) {
-		this.id = id;
-		this.nom = nom;
-		this.prenom = prenom;
-		this.age = age;
-		this.profession = profession;
-		this.hobby = hobby;
-		this.pseudo = pseudo;
-		this.password = password;
-		this.type_utilisateur = "Visiteur";
-	}
+    @OneToOne
+    private Inscription inscription;
 
-	public String getType_utilisateur() {
-		return type_utilisateur;
-	}
+    @OneToMany
+    private List<Message> message = new ArrayList<Message>();
 
-	public void setType_utilisateur(String type_utilisateur) {
-		this.type_utilisateur = type_utilisateur;
-	}
+    public Utilisateur() {
+    }
 
-	public int getId() {
-		return id;
-	}
+    public Utilisateur(int id, String nom, String prenom, int age, String profession, String hobby, String pseudo,
+                       String password) {
+        this.id = id;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.age = age;
+        this.profession = profession;
+        this.hobby = hobby;
+        this.pseudo = pseudo;
+        this.password = password;
+        this.type_utilisateur = "VISITEUR";
+    }
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    public String getType_utilisateur() {
+        return type_utilisateur;
+    }
 
-	public String getNom() {
-		return nom;
-	}
+    public void setType_utilisateur(String type_utilisateur) {
+        this.type_utilisateur = type_utilisateur;
+    }
 
-	public void setNom(String nom) {
-		this.nom = nom;
-	}
+    public int getId() {
+        return id;
+    }
 
-	public String getPrenom() {
-		return prenom;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public void setPrenom(String prenom) {
-		this.prenom = prenom;
-	}
+    public String getNom() {
+        return nom;
+    }
 
-	public int getAge() {
-		return age;
-	}
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
 
-	public void setAge(int age) {
-		this.age = age;
-	}
+    public String getPrenom() {
+        return prenom;
+    }
 
-	public String getProfession() {
-		return profession;
-	}
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
+    }
 
-	public void setProfession(String profession) {
-		this.profession = profession;
-	}
+    public int getAge() {
+        return age;
+    }
 
-	public String getHobby() {
-		return hobby;
-	}
+    public void setAge(int age) {
+        this.age = age;
+    }
 
-	public void setHobby(String hobby) {
-		this.hobby = hobby;
-	}
+    public String getProfession() {
+        return profession;
+    }
 
-	public String getPseudo() {
-		return pseudo;
-	}
+    public void setProfession(String profession) {
+        this.profession = profession;
+    }
 
-	public void setPseudo(String pseudo) {
-		this.pseudo = pseudo;
-	}
+    public String getHobby() {
+        return hobby;
+    }
 
-	public String getPassword() {
-		return password;
-	}
+    public void setHobby(String hobby) {
+        this.hobby = hobby;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    public String getPseudo() {
+        return pseudo;
+    }
 
-	public Inscription getInscription() {
-		return inscription;
-	}
+    public void setPseudo(String pseudo) {
+        this.pseudo = pseudo;
+    }
 
-	public void setInscription(Inscription inscription) {
-		this.inscription = inscription;
-	}
+    public String getPassword() {
+        return password;
+    }
 
-	public List<Message> getMessage() {
-		return message;
-	}
+    public void setPassword(String password) {
+        this.password = new BCryptPasswordEncoder().encode(password);
+    }
 
-	public void setMessage(List<Message> message) {
-		this.message = message;
-	}
-	
-	
-	
+    public Inscription getInscription() {
+        return inscription;
+    }
+
+    public void setInscription(Inscription inscription) {
+        this.inscription = inscription;
+    }
+
+    public List<Message> getMessage() {
+        return message;
+    }
+
+    public void setMessage(List<Message> message) {
+        this.message = message;
+    }
+
+
 }
