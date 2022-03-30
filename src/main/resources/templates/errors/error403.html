@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="index :: headfiles">
+</head>
+<body>
+<header th:insert="index :: headerfiles"></header>
+<div class="error403">
+    <div class="wrapper">
+        <div class="box">
+            <h1>403</h1>
+            <p>Sorry, mais y'a des chiens mignons...</p>
+            <p><a href="/">Please, go back this way.</a></p>
+        </div>
+    </div>
+</div>
+<footer th:insert="index :: footer"></footer>
+</body>
+</html>
