@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="index :: headfiles">
+</head>
+<body>
+<div class="col-6 offset-3 mt-5 form-group">
+    <form method="post" name="f" th:action="@{/login}">
+        <fieldset>
+            <legend class="text-white">Connexion</legend>
+            <div class="alert alert-danger" th:if="${param.error}">
+                Nom d'utilisateur ou mot de passe invalide
+            </div>
+            <label class="text-white" for="username">Nom d'utilisateur</label>
+            <input class="form-control" id="username" name="username" type="text"/>
+            <label class="text-white" for="password">Mot de passe</label>
+            <input class="form-control" id="password" name="password" type="password"/>
+            <div class="form-actions">
+                <button class="btn btn-success mt-3" type="submit">Connexion</button>
+            </div>
+            <a class="text-white" th:href="@{inscription}">Pas de compte ? Créez en un</a>
+        </fieldset>
+    </form>
+</div>
+</body>
+</html>

@@ -40,7 +40,7 @@ public class FrontController {
 
     @GetMapping("/newSubjectAccess")
     public String getSubjectAccess() {
-        return "newSubject";
+        return "nouveauSujet";
     }
 
     @GetMapping("/general")
