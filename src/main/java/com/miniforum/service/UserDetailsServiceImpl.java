@@ -27,7 +27,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String pseudo) throws UsernameNotFoundException {
         Utilisateur utilisateur = utilisateurRepository.findByPseudo(pseudo);
-        UserDetails userDetails = new User(pseudo, utilisateur.getPassword(), AuthorityUtils.createAuthorityList(utilisateur.getType_utilisateur()));
+        UserDetails userDetails = null;
+        if (utilisateur.getInscription() != null) {
+            userDetails = new User(pseudo, utilisateur.getPassword(), AuthorityUtils.createAuthorityList(utilisateur.getRole()));
+        }
         return userDetails;
     }
 }

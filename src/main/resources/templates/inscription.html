@@ -9,7 +9,8 @@
 <div class="text-success fw-bold text-center mt-5 mb-2 fs-4" th:if="${confirmation != null}">
     <span th:text="${confirmation}"></span>
 </div>
-<form action="/inscription" class="my-5 mb-3 mx-auto justify-content-center w-50 p-3 form-horizontal" method="POST">
+<form class="my-5 mb-3 mx-auto justify-content-center w-50 p-3 form-horizontal" method="POST"
+      th:action="@{inscription}">
     <div class="row">
         <div class="col-sm-3">
             <h1 class="text-white">Inscription</h1>

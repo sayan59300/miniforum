@@ -20,7 +20,7 @@ public class Utilisateur {
     private String hobby;
     private String pseudo;
     private String password;
-    private String type_utilisateur;
+    private String role = "VISITEUR";
 
     @OneToOne
     private Inscription inscription;
@@ -41,15 +41,14 @@ public class Utilisateur {
         this.hobby = hobby;
         this.pseudo = pseudo;
         this.password = password;
-        this.type_utilisateur = "VISITEUR";
     }
 
-    public String getType_utilisateur() {
-        return type_utilisateur;
+    public String getRole() {
+        return role;
     }
 
-    public void setType_utilisateur(String type_utilisateur) {
-        this.type_utilisateur = type_utilisateur;
+    public void setRole(String type_utilisateur) {
+        this.role = type_utilisateur;
     }
 
     public int getId() {
